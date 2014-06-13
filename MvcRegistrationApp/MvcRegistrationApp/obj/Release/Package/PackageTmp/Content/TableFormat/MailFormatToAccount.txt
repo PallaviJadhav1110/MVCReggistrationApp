@@ -1,0 +1,83 @@
+<html>
+<body style="font-family:Calibri;font-size:14px">
+Hi Team,
+<br/>
+<br/>
+
+Following are the details of New Joinee - (Candidate Name).
+<br/>
+
+
+<table border="1" style="font-family:Calibri;font-size:14px">
+<tr Bgcolor="#CCCCFF">
+<td colspan="2">Vendor Contract Details</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td >Contract Resource Name</td><td>[RN]</td>
+</tr>
+<tr>
+<td >Vendor / Eco - Partner Name</td><td>[VPN]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td >Project Name</td><td>[PN]</td>
+</tr>
+<tr>
+<td>Client Name</td><td>[CN]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td >Technology</td><td>[T]</td>
+</tr>
+<tr>
+<td>Work Location</td><td>[WL]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td >Fixed Bid / T&M</td><td>[FB]</td>
+</tr>
+<tr>
+<td>Reporting Manager</td><td>[RM]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Assignment Start Date</td><td>[ASD]</td>
+</tr>
+<tr>
+<td>Tentative End Date</td><td>[TED]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Contract Rate </td><td>[CR]</td>
+</tr>
+
+</table>
+<br/>
+<br/>
+Thanks & Regards,
+<br/>
+VMG Team
+<br/>
+Fulcrum Worldwide Software (I) Pvt. Ltd.
+<br/>
+M (O) +91 09320434216 / 09320424218 | 
+<br/>
+405 VIP Plaza | Off Andheri Link Road | Andheri West | Mumbai - 400 053 | Maharashtra, India |  www.fulcrumww.com 
+<br/>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

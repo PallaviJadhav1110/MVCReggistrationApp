@@ -1,0 +1,118 @@
+﻿@model DataLayer.AuthenticationClass
+@{
+    ViewBag.Title = "Authentication";
+    Layout="~/Views/Shared/_emptyLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Authentication", "Registration", FormMethod.Post, new { @id="LoginForm"}))
+{
+    @*<div>
+        @Html.ValidationMessageFor(x=>x.UserName)
+        
+    </div>*@
+    <div class="Maindiv">
+<table class="box" style="background-color:white">
+     <tr >
+        <td  colspan="3">
+            <div class="title">Login</div>
+       </td>
+    </tr>
+    <tr>
+        <td>
+            User Name :
+        </td>
+        <td>
+            @Html.TextBoxFor(x => x.UserName, new { @id = "UserName",@name="UserName",@class = "required" })@Html.ValidationMessageFor(x=>x.UserName)
+        </td>
+        
+    </tr>
+     <tr>
+        <td>
+           Password :
+        </td>
+        <td>
+            @Html.PasswordFor(x => x.Password, new { @id = "Password",@name="Password",@class = "required" })@Html.ValidationMessageFor(x=>x.Password)
+        </td>
+         
+    </tr>
+    <tr><td></td>
+        <td class="submit">
+            <input type="submit" value="Login"  />
+        </td>
+    </tr>
+    <tr>
+        @if (@TempData["message"] != null)
+        {
+            <td colspan="2" class="errmsg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @TempData["message"]</td>
+        }
+    </tr>
+</table></div>
+}
+<style type="text/css">
+    table td {
+    padding:0 10px 0 10px;
+    width:450px;
+    }
+    .errmsg {
+        color:orangered;
+    }
+        table td input {
+        width: 150px;
+        }
+    .title {
+    font:bold 18px segoe UI;
+    text-align:center;
+    padding-left:40%;
+    padding:20px 0 20px 0;
+    }
+ .box {
+    display: table-cell;
+    background: red url(gradient.png) repeat-x scroll top left;
+    
+    border-radius: 25px; /* Standard */
+    -o-border-radius: 25px; /* Opera 10.x */
+    -moz-border-radius: 25px; /* Mozilla/Firefox */
+    -icab-border-radius: 25px; /* iCab */
+    -khtml-border-radius: 25px; /* KHTML/Konqueror */
+    -webkit-border-radius: 25px; /* Webkit/Safari/Chrome/etcetera */
+}
+
+    #body,.main-content,form  {
+    
+    min-height:100% !important}
+
+    .Maindiv {
+    margin:180px 40%;
+    width:350px;
+    }
+    #body {
+        /*background: -webkit-linear-gradient(bottom,#FFFFFF,#565759);*/
+       /*background:-prefix-linear-gradient(top, blue, white);*/
+        /*background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#FFFFFF), to(#565759));*/
+    }
+
+    .submit {
+    padding-bottom:20px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert("hi");
+        $("#LoginForm").validate({
+            rules: {
+                UserName: {
+                    required: true
+                },
+                Password:{
+                    required: true
+                }
+            },
+            message:{
+                UserName: "Please enter Username",
+                Password:"please Enter password"
+        }
+            
+        });
+    });
+</script>

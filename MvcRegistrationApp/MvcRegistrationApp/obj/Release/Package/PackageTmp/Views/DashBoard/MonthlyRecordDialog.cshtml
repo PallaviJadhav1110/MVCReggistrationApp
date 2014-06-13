@@ -1,0 +1,98 @@
+﻿@model List<DataLayer.ResourceInfo>
+
+
+
+
+    @if(@Model.Count!=0)
+{
+          <table id="Montnly_record" class="display" style="overflow-x:scroll;overflow-y:scroll" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>SOW NO</th>
+                            <th>Signed Status</th>
+                            <th>Joining Status</th>
+                            <th>SOW Date</th>
+                            <th>Partner Name</th>
+                            <th>Client Name</th>
+                            <th>ProjectName</th>
+                            <th>Resource Name</th>
+                            <th>Technology</th>
+                            <th>FixedBidOrTM</th>
+                            <th>Reporting Manager</th>
+                            <th>Assignment Start Date</th>
+                            <th>Tentative End Date</th>
+                            <th>Estimated Rate</th>
+                            <th>Work Location</th>
+                            <th>Bussiness Unit</th>
+                            <th>Designation</th>
+                            <th>Reporting Time</th>
+                            <th>Recruiter Name</th>
+                            <th>Hardware Requiremments</th>
+                            <th>Software Requirements</th>
+                            <th>GA Remark</th>
+
+                        </tr>
+                    </thead>
+ 
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.SOWNo</td>
+
+                    <td>@item.SignedStatus</td>
+                    <td>@item.JoiningStatus</td>
+                    <td>@item.SOWDate.ToShortDateString()</td>
+                    <td>@item.PartnerName</td>
+                    <td>@item.ClientName</td>
+                    <td>@item.ProjectName</td>
+                    <td>@item.ResourceName</td>
+                    <td>@item.Technology</td>
+                    <td>@item.FixedBidOrTM</td>
+                    <td>@item.ReportingManager</td>
+                    <td>@item.AssignmentStartDate.ToShortDateString()</td>
+                    <td>@item.TentativeEndDate.ToShortDateString()</td>
+                    <td>@item.EstimatedRateValue</td>
+                    <td>@item.WorkLocation</td>
+                    <td>@item.BussinessUnit</td>
+                    <td>@item.Designation </td>
+                    <td>@item.ReportingTime</td>
+                    <td>@item.RecruiterName</td>
+                    <td>@item.HardwareRequirement</td>
+                    <td>@item.SoftwareRequirement</td>
+                    @if (@item.Remarks != null || @item.Remarks != "")
+                    {
+                        <td>@item.Remarks</td>
+                }
+
+
+                    <td>
+                </tr>
+    }
+
+        </tbody>
+                </table>
+    }
+else
+{
+    <div><h4>No Record</h4></div>
+}
+
+@using (Html.BeginForm("ExportMonthlyData", "DashBoard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+    <input type="hidden" id="Month_Year" name="Month_Year"/>
+    <input type="submit" value="Export" />
+ }
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var id = $(MonthlyRecord).attr("title");
+        //alert(id);
+        $(Month_Year).val(id);
+    });
+</script>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+       
+         <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+        
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+ 
+         
+               <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+ 
+        
+         @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+       
+       
+
+        
+    </head>
+    <body class="clsBody" style="overflow:hidden">
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    @*<a href="~/Images/fww_logo.png"></a>*@
+                    <p class="site-title">&nbsp;&nbsp;&nbsp;&nbsp;<img alt="no img" src="@Url.Content("~/Images/fww_logo.png")" @*height="75" width="150"*@  /></p>
+                </div>
+                <div class="float-right">
+                    @*<section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>*@
+                    <nav>
+                        <ul id="menu">
+                            <li></li>
+                            <li><a id="Dashboard" href="@Url.Action("DisplayDashBoard", "DashBoard")">DashBoard</a>
+                                <a id="InsertDetails" href="@Url.Action("UserDetails", "Registration")">InsertData</a>
+                            <a id="resorcedata" href="@Url.Action("SearchView", "Registration")">Resource Data</a></li>
+                            <li> <a href="@Url.Action("Logout", "Registration")">Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body" >
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        @*<footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>*@
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
+<style type="text/css">
+    #body {
+        /*background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #565759 100%) !important;
+        background-image:-webkit-gradient(bottom, #FFFFFF 0%, #565759 100%) !important;
+        color:black !important;
+        background: -webkit-linear-gradient(bottom,#FFFFFF,#565759);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#565759', endColorstr='#FFFFFF');*/
+
+         background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #0ca5e3 100%) !important;
+        background-image: -webkit-gradient(bottom, #FFFFFF 0%, #0ca5e3 100%) !important;
+        height: 100% !important;
+        background: -webkit-linear-gradient(bottom,#FFFFFF,#0ca5e3); 
+         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0ca5e3', endColorstr='#FFFFFF');
+    }
+    #logo {
+        text-align:left;
+    }
+</style>

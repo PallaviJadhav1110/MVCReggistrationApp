@@ -1,0 +1,212 @@
+﻿@model DataLayer.SearchModel
+@using System.Web.UI.WebControls
+<link href="~/Scripts/Custom/searchView.css" rel="stylesheet" />
+<link href="~/Scripts/Custom/EmployeeData.css" rel="stylesheet" />
+<script src="~/Scripts/Custom/SearchView.js"></script>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div id="DivSearch">
+        <input type="radio" name="Search" id="rdSearchByName" value="SearchByName" class="" onclick="Display(this)">
+        SearchByName<br />
+
+        <input type="radio" name="Search" id="rdSearchByDate" value="SearchByDate"  onclick="Display(this)">
+        SearchByDate
+    </div>
+    @*<div id="DivSearchBydate">
+        <input type="radio" name="SearchByDate" id="rdSearchByStartDate" value="SearchByStartDate" class="" onclick="DisplaySearchByDate(this)">
+        SearchByStartDate<br />
+
+        <input type="radio" name="SearchByDate" id="rdSearchByEndDate" value="SearchByEndDate" class="" onclick="DisplaySearchByDate(this)">
+        SearchByEndDate
+    </div>*@
+    <div id="DivTblSearch">
+        <form id="frmSearch">
+            <table style="padding: 1px 1px 1px 1px; word-spacing: 2px; text-align: center">
+
+                <tr>
+                    <td class="searchByName">Resource Name : </td>
+                    <td class="searchByName">@Html.TextBoxFor(x => x.ResourceName, new { id = "ResourceName", style = "width:80px;height:10px;" })  </td>
+                    <td class="searchByDate">FromDate :</td>
+                    <td class="searchByDate">@Html.TextBoxFor(x => x.FromDate, new { style = "width:80px;height:10px;", id = "FromDate" })</td>
+                </tr>
+                <tr>
+                    <td class="searchByName">Partner Name :</td>
+                    <td class="searchByName">@Html.TextBoxFor(x => x.PartnerName, new { id = "PartnerName", style = "width:80px;height:10px" })</td>
+                    <td class="searchByDate">ToDate :</td>
+                    <td class="searchByDate">@Html.TextBoxFor(x => x.ToDate, new { style = "width:80px;height:10px;", id = "ToDate" })</td>
+                </tr>
+                <tr>
+                    <td class="searchByName">Project Name :</td>
+                    <td class="searchByName">@Html.TextBoxFor(x => x.ProjectName, new { id = "ProjectName", style = "width:80px;height:10px" }) </td>
+                    <td class="searchByDate"></td>
+                    <td class="searchByDate"></td>
+                </tr>
+
+            </table>
+            <input type="hidden" id="HiddenSearchBy" value="" />
+        </form>
+
+        <input id="btnSubmit" type="submit" class="SearchButton" onclick="search()" value="Search" />
+    </div>
+</div>
+
+
+
+<div>
+    @if (TempData["message"] != null)
+    {
+        <h3 class="errmsg">@TempData["message"]</h3>
+          
+    }
+</div>
+
+<div>
+    <input type="checkbox" id="CheckAll" />
+    Select All
+    <br />
+
+    @for (int i = 0; i < Model.DisplayColumnsList.Count(); i++)
+    {
+        if (i == 5 || i == 10 || i == 15)
+        {
+        <br />
+        }
+        <div class="checkboxes">
+            <input class="chk" type="checkbox" style="font-size: 12px;" id="@Model.DisplayColumnsList[i].Text" value="@Model.DisplayColumnsList[i].Value" onchange="changeStyle(this)"/>
+
+            @Model.DisplayColumnsList[i].Value
+
+        </div>
+    }
+
+</div>
+
+
+
+<div id="divList">
+    @{Html.RenderPartial("EmployeeData", Model);}
+</div>
+@*}*@
+
+@using (Html.BeginForm("ExportData", "Registration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.FromDate, new { id = "ExFromDate" });
+    @Html.HiddenFor(x => x.ToDate, new { id = "ExToDate" });
+    @Html.HiddenFor(x => x.ResourceName, new { id = "ExResourcename" });
+    @Html.HiddenFor(x => x.PartnerName, new { id = "ExPartnername" });
+    @Html.HiddenFor(x => x.ProjectName, new { id = "ExProjectname" });
+    @Html.HiddenFor(x => x.searchBy, new { id = "ExSearchBy" });
+    
+    <div>
+        <input type="submit" name="Export" id="Export" value="Export" />
+
+    </div>
+            
+   
+}
+<link href="~/Scripts/datatables/jquery.dataTables.css" rel="stylesheet" />
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @*<script src="~/Scripts/datatables/jquery-1.10.2.min.js"></script>*@
+
+    <script src="~/Scripts/datatables/jquery.dataTables.js"></script>
+
+    <script type="text/javascript">
+        
+        
+
+       
+        function search() {
+
+            var FromDate = $("#FromDate").val();
+            var ToDate = $("#ToDate").val();
+            var ResourceName = $("#ResourceName").val();
+            var PartnerName = $("#PartnerName").val();
+            var ProjectName = $("#ProjectName").val();
+            var SearchBy = $("#HiddenSearchBy").val();
+            var data = $("#frmSearch").serialize() + '&SearchBy=' + SearchBy
+            //alert(data);
+            //alert(SearchBy);
+            $("#ExFromDate").val(FromDate);
+            $("#ExToDate").val(ToDate);
+            $("#ExResourcename").val(ResourceName);
+            $("#ExPartnername").val(PartnerName);
+            $("#ExProjectname").val(ProjectName);
+            $("#ExSearchBy").val(SearchBy);
+            var url = "@Url.Action("Search", "Registration")";
+            $.ajax({
+                type: 'POST',
+                data: data,
+                //data: { resourceName: ResourceName, partnerName: PartnerName, projectName: ProjectName, FromDate: FromDate, ToDate: ToDate,SearchByStartOrEnd:SearchByStartOrEnd },
+                url: url,
+                success: function (response) {
+                    //alert(response);
+                    $('#divList').html(response);
+                    $('#example').dataTable({
+                        "scrollY": 200,
+                        "scrollX": true
+                    });
+
+                },
+                failure: function (res) {
+                    alert("failure");
+                }
+            });
+        }
+
+        function Display(obj) {
+
+            if ($("#rdSearchByDate").is(':checked')) {
+
+                //alert("1");
+                $("#DivTblSearch").show();
+                $(".searchByName").css("display", "none");
+                $(".searchByDate").css("display", "table-cell");
+                $(".SearchButton").css("display", "Block");
+                $("#HiddenSearchBy").val("ByStartDate");
+
+            }
+            if ($("#rdSearchByName").is(':checked')) {
+
+                $(".searchByName").css("display", "table-cell");
+                $(".searchByDate").css("display", "none");
+                $(".SearchButton").css("display", "Block");
+                $("#HiddenSearchBy").val("ByName");
+
+            }
+        }
+
+        $(document).ready(function () {
+            //alert("document");
+            //$(".dataTables_scrollBody").find('thead').hide();
+            //$("#DivTblSearch").css("display","none");
+            //$("#DivSearchBydate").hide();
+            $(".searchByName").css("display", "none");
+            $(".searchByDate").css("display", "none");
+            $(".SearchButton").css("display", "none");
+            
+
+        });
+        $('#CheckAll').change(function () {
+
+            if ($('#CheckAll')[0].checked) {
+                $('input:checkbox').each(function (index, value) { $('input:checkbox')[index].checked = true; });
+                DisplayAll();
+                //$(".SR").css("display", "table-cell");
+
+            }
+            else {
+                $('input:checkbox').removeAttr('checked');
+                HideAll();
+            }
+        });
+
+    </script>
+}
+

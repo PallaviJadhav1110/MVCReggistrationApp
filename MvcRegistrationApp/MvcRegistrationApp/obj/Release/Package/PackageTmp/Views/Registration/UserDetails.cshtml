@@ -1,0 +1,482 @@
+﻿@model DataLayer.ResourceInfo
+@using System.Web.UI.WebControls
+
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var TechonolgyList = new List<ListItem> { new ListItem { Text = "App. Dev", Value = "App. Dev" }, new ListItem { Text = "CRM", Value = "CRM" }, new ListItem { Text = "Database", Value = "Database" }, 
+        new ListItem { Text = "Designing", Value = "Designing" }, new ListItem { Text = "e-Learning", Value = "e-Learning" }, new ListItem { Text = "Generic", Value = "Generic" },
+     new ListItem { Text = "Infra", Value = "Infra" }, new ListItem { Text = "Mobile", Value = "Mobile" }, new ListItem { Text = "Portal", Value = "Portal" }, new ListItem { Text = "Web Tech", Value = "Web Tech" }};
+    var SignedStatusList = new List<ListItem> { new ListItem { Text = "Signed", Value = "Signed" }, new ListItem { Text = "Vendor Signed", Value = "Vendor Signed" } };
+    var JoiningStatusList = new List<ListItem> { new ListItem { Text = "Joined", Value = "Joined" }, new ListItem { Text = "Expected Joinee", Value = "Expected Joinee" }, new ListItem { Text = "BackOut", Value = "BackOut" } };
+    var FixedBidTmlist = new List<ListItem> { new ListItem { Text = "Fixed", Value = "Fixed" }, new ListItem { Text = "T&M", Value = "T&M" } };
+    var EstimateRatelist = new List<ListItem> { new ListItem { Text = "Per Day", Value = "Per Day" }, new ListItem { Text = "Per Man Hr", Value = "Per Man Hr" } };
+    
+
+}
+<style type="text/css">
+    .frmTable td {
+        width: 22% !important;
+        font-size: 11px !important;
+    }
+
+    /*.wrappertxt {
+    border:1px solid #000;
+    display:inline-block;
+}
+
+input,
+button.delete {
+    background-color:transparent;
+    border:0;
+ }*/
+
+    #rdyes, #rdno {
+        width: 20px !important;
+    }
+     #menu li a#InsertDetails{
+        display:none;
+    }
+</style>
+@*<form id="frmBody">*@
+<div id="MainBody">
+    @using (Html.BeginForm("saveData", "Registration", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "register-form" }))
+    {
+        @Html.ValidationSummary(true)
+        <div>
+            
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <h3 class="SucMsg">@TempData["SuccessMessage"]</h3>
+            } 
+            @if (TempData["message"] != null)
+            {
+                <h3 class="errmsg">@TempData["message"]</h3>
+            }
+        </div>
+        <table class="frmTable">
+            <tr>
+                @Html.HiddenFor(x => x.SOWNo)
+                @Html.HiddenFor(x => x.update)
+                <td>Signed Status :</td>
+                <td>@Html.DropDownListFor(model => model.SignedStatus, new SelectList(SignedStatusList),"-- Select--", new { id = "SignedStatusList", @name = "SignedStatusList", @class = "required", style = "height:30px; width:170px" })<br />
+                    @Html.ValidationMessageFor(model=>model.SignedStatus)</td>
+                <td>JoiningStatus :</td>
+                <td>@Html.DropDownListFor(model => model.JoiningStatus, new SelectList(JoiningStatusList), "-- Select--", new { id = "JoiningStatusList", @name = "JoiningStatusList", @class = "required", style = "height:30px; width:170px" })<br />
+                    @Html.ValidationMessageFor(model=>model.JoiningStatus)</td>
+
+
+                <td>Recruiter Name :</td>
+                <td>@Html.TextBoxFor(x => x.RecruiterName, new { @id = "RecruiterName", @name = "RecruiterName", @class = "required", style = "height:20px; width:170px" })
+                <br />@Html.ValidationMessageFor(x => x.RecruiterName)</td>
+            </tr>
+            <tr>
+                <td>SOW Date :</td>
+                <td>@Html.TextBox("SOWDate", Model.SOWDate.ToString("dd/MM/yyyy") == "01/01/0001" ? "" : Model.SOWDate.ToString("dd/MM/yyyy"), new { id = "SOWDate", @readonly = "true", style = "height:20px; width:170px" })<br />
+                @Html.ValidationMessageFor(x=>x.SOWDate)</td>
+               
+                <td>Partner Name :</td>
+                <td>@Html.TextBoxFor(x => x.PartnerName, new { id = "PartnerName", @name = "PartnerName", @class = "required", style = "height:20px; width:170px" })<br />
+                 @Html.ValidationMessageFor(x=>x.PartnerName)</td>
+                <td>Client Name :</td>
+                <td>@Html.TextBoxFor(x => x.ClientName, new { id = "ClientName", @name = "ClientName", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.ClientName)</td>
+            </tr>
+            <tr>
+                <td>Project Name :</td>
+                <td>@Html.TextBoxFor(x => x.ProjectName, new { id = "ProjectName", @name = "ProjectName", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.ProjectName)</td>
+                <td>Tech Stream:</td>
+                <td>@Html.DropDownListFor(model => model.TechStream, new SelectList(TechonolgyList), "-- Select--", new { id = "TechStream", @name = "TechStream", @class = "required", style = "height:30px; width:170px" })<br />
+                    @Html.ValidationMessageFor(model=>model.TechStream)</td>
+                <td>Technology:</td>
+                <td>@Html.TextBoxFor(x => x.Technology, new { id = "Technology", @name = "Technology", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.Technology)</td>          
+                 </tr>
+
+            <tr>
+                <td>Fixed Bid / T&M @*<span class="span">*</span>*@:</td>
+                <td>@Html.DropDownListFor(model => model.FixedBidOrTM, new SelectList(FixedBidTmlist), "-- Select--", new { id = "FixedBidOrTM", @name = "SignedStatusList", @class = "required", style = "height:30px; width:170px" })<br />
+                    @Html.ValidationMessageFor(model=>model.FixedBidOrTM)</td>
+               
+                <td>Reporting Manager @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.ReportingManager, new { id = "ReportingManager", @name = "ReportingManager", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.ReportingManager)</td>
+                <td>Assignment Start Date&nbsp;&nbsp;@*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBox("AssignmentStartDate", Model.AssignmentStartDate.ToString("dd/MM/yyyy") == "01/01/0001" ? "" : Model.AssignmentStartDate.ToString("dd/MM/yyyy"), new { id = "AssignmentStartDate", @readonly = "true", style = "height:20px; width:170px" })
+                <br />@Html.ValidationMessageFor(x=>x.AssignmentStartDate)</td>
+            </tr>
+            <tr>
+                <td>Tentative End Date @*<span class="span">*</span>*@:</td>
+                <td>
+                    @Html.TextBox("TentativeEndDate", Model.TentativeEndDate.ToString("dd/MM/yyyy") == "01/01/0001" ? "" : Model.TentativeEndDate.ToString("dd/MM/yyyy"), new { id = "TentativeEndDate", @readonly = "true", style = "height:20px; width:170px" })
+                <br />@Html.ValidationMessageFor(x=>x.TentativeEndDate)</td>
+
+                <td>Resource Name @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.ResourceName, new { id = "ResourceName", @name = "ResourceName", @class = "required", style = "height:20px; width:170px" })
+
+                <br />@Html.ValidationMessageFor(x=>x.ResourceName)</td>
+               @* <td>Estimated Rate Value <span class="span">*</span> :</td>
+                <td>@Html.TextBoxFor(x => x.EstimatedRateValue, new { id = "EstimatedRateValue", @name = "EstimatedRateValue", @class = "required", style = "height:20px; width:170px" })</td>*@
+                <td>Reporting Time @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.ReportingTime, new { id = "ReportingTime", @name = "ReportingTime", @class = "required", style = "height:20px; width:170px" })
+               <br />@Html.ValidationMessageFor(x=>x.ReportingTime)</td>
+            </tr>
+
+            <tr>
+                <td>Work Location @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.WorkLocation, new { id = "WorkLocation", @name = "WorkLocation", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.WorkLocation)</td>
+                <td>Bussiness Unit @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.BussinessUnit, new { id = "BussinessUnit", @name = "BussinessUnit", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.BussinessUnit)</td>
+                <td>Designation @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.Designation, new { id = "Designation", @name = "Designation", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.Designation)</td>
+            </tr>
+            <tr>
+
+               
+                <td>Hardware Requirement @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.HardwareRequirement, new { id = "HardwareRequirement", @name = "HardwareRequirement", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.HardwareRequirement)</td>
+                <td>Software Requirement @*<span class="span">*</span>*@:</td>
+                <td>@Html.TextBoxFor(x => x.SoftwareRequirement, new { id = "SoftwareRequirement", @name = "SoftwareRequirement", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.SoftwareRequirement)</td>
+                 <td>E-Mail Address Of Account Team :</td>
+                <td>@Html.TextBoxFor(x => x.FinanceEmailAddress, new { id = "FinanceEmailAddress",@name="FinanceEmailAddress", @class="required",style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.FinanceEmailAddress)</td>
+            </tr>
+            <tr>
+                <td>E-Mail Address Of On Board Team: </td>
+                <td>@Html.TextBoxFor(x => x.OnBoardEmailAddress, new { id = "OnBoardEmailAddress",@name="OnBoardEmailAddress",@class="required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.OnBoardEmailAddress)</td>
+                <td>Guest Accomodation <span class="span">*</span>:</td>
+
+                <td>
+                    
+                    <input type="radio" name="Accomodation" id="rdyes" value="yes" class="" onclick="setReadOnly(this)">
+                    Yes 
+                 <input type="radio" name="Accomodation" id="rdno" value="no" class="" onclick="setReadOnly(this)">
+                    No
+                </td>
+
+                <td id="remarkLabel">Remark  :</td>
+
+                <td id="txtRemark">@Html.TextBoxFor(x => x.Remarks, new { id = "Remarks",@name="Remarks",@class="required", style = "height:20px; width:170px" })</td>
+
+            </tr>
+            <tr>
+                 <td>Estimated Rate Value <span class="span">*</span> :</td>
+                <td>@Html.TextBoxFor(x => x.EstimatedRateValue, new { id = "EstimatedRateValue", @name = "EstimatedRateValue", @class = "required", style = "height:20px; width:170px" })<br />
+                    @Html.ValidationMessageFor(x=>x.EstimatedRateValue)</td>
+                <td>Attachment :
+                </td>
+                <td>
+
+                    <input type="file" name="files" id="PostedFile1" multiple="multiple" style="width: 70%;" /></td>
+                <td class="wrapper">
+                    
+                    @if(!string.IsNullOrEmpty(@Model.AttachFile1))
+                    {
+                        int i=1;
+                        
+                       foreach (var a in @Model.AttachFile1.Split(','))
+                       {
+                         
+                         if (!String.IsNullOrEmpty(a.Trim()))
+                         {
+                             var filename = "filename" + i;
+                             
+                             <div  style="display:inline-table" >
+                             <input type="button"  id="@filename" value="File"  title="@a"  class="masterTooltip"/><a href="#" title="@a" class="removeclass">&times;</a>@*<input type="button" class="delete" title="@a" value="Del" id='@button' />*@
+                             </div>
+                                 i++;
+                         }
+                           
+                       }
+                       <input type="hidden" id="i" value="@i" />
+                    }
+                    @Html.HiddenFor(x => x.AttachFile1, new { id="files"})
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <input type="submit" value="Save" id="btnsave" class="buttonClass"/>
+                </td>
+            </tr>
+
+        </table>
+   
+    }
+
+
+    
+</div>
+@*</form>*@
+
+@section Scripts {
+   
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+   @* <script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script type="text/javascript">
+
+       
+        
+
+        function setReadOnly(obj) {
+
+            if ($("#rdyes").is(':checked')) {
+                //alert("1");
+                $("#txtRemark").show();
+                $("#remarkLabel").show();
+                
+
+
+            }
+            if ($("#rdno").is(':checked')) {
+
+                $("#txtRemark").hide();
+                $("#remarkLabel").hide();
+
+
+            }
+        }
+        var remark = '@Model.Remarks';
+           
+        $(document).ready(function () {
+            //IMP Note
+            // google crome date issue is handled in validate.js 
+
+            $("body").on("click",".removeclass", function(e){ //user click on remove text
+                //if( x > 1 ) {
+                var name = $(this).attr('title');
+                var filename = "";
+                $(this).parent('div').remove(); //remove text box                
+                var i = $("#i").val();
+                var filename ="";
+                //alert(i);
+                for (var j = 1; j < i ; j++) {
+                    var file = $("#filename" + j).attr('title');
+                    //alert(file);
+                    
+                    if (file == "undefined") {
+                        file = "";
+                       
+                    }
+                    filename = filename + "," + file;
+          
+                }
+                //alert(filename);
+                filename = filename.replace("undefined,", "");
+                //alert(filename);
+                $("#files").val(filename);
+            
+
+        });
+
+            
+
+
+            $('.masterTooltip').hover(function () {
+                // Hover over code
+                var title = $(this).attr('title');
+                $(this).data('tipText', title).removeAttr('title');
+                $('<p class="tooltip"></p>')
+                .text(title)
+                .appendTo('body')
+                .fadeIn('slow');
+            }, function () {
+                // Hover out code
+                $(this).attr('title', $(this).data('tipText'));
+                $('.tooltip').remove();
+            }).mousemove(function (e) {
+                var mousex = e.pageX + 20; //Get X coordinates
+                var mousey = e.pageY + 10; //Get Y coordinates
+                $('.tooltip')
+                .css({ top: mousey, left: mousex })
+            });
+
+            var lang = $('html').attr("lang");
+            // Set datepicker language. 
+            $.datepicker.setDefaults(
+                $.datepicker.regional[lang === 'en' ? '' : lang]);
+
+            if ($("#Remarks").val() != null && $("#Remarks").val() != "") {
+                //alert();
+                $("#rdyes").prop("checked", true);
+                $("#rdno").prop("checked", false);
+                $("#txtRemark").show();
+                $("#remarkLabel").show();
+            }
+            else {
+                //alert("No Value");
+                $("#rdyes").prop("checked", false)
+                $("#rdno").prop("checked", true);
+
+                $("#txtRemark").hide();
+                $("#remarkLabel").hide();
+            }
+
+
+           
+
+            $('#PostedFile1').live('change', function () {
+                var val = $("#PostedFile1").val().split("\\");
+                val = val[val.length - 1];
+                //alert(val);
+                $.ajax({
+                    type: 'POST',
+                    data: { file: val },
+                    url: "/MvcRegistrationApp/Registration/CheckFileExists",
+                    success: function (response) {
+                        //alert(response);
+                        //$('#divCity').html(response);
+
+                    }
+
+
+                });
+                
+                $("#register-form").validate({                   
+                  
+                });
+
+            });
+            
+
+            $("#AssignmentStartDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                maxDate: '01/01/2050',
+                minDate: '01/01/1975',
+                yearRange: '1975:2050',
+                onSelect: function (selected) {
+                    $("#TentativeEndDate").datepicker("option", "minDate", selected)
+                }
+
+            });
+            $("#TentativeEndDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                maxDate: '01/01/2050',
+                minDate: '01/01/1975',
+                yearRange: '1975:2050'
+                
+
+            });
+            $("#SOWDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy'
+                
+
+            });
+
+
+
+
+        });
+
+
+
+        function success(responce) {
+
+
+            $("#message").html(htmldr);
+            $("#SignedStatusList").val("");
+            $("#JoiningStatusList").val("");
+            $("#SOWDate").val("");
+            $("#AssignmentStartDate").val("");
+            $("#TentativeEndDate").val("");
+            $("#ReportingManager").val("");
+            $("#FixedBidOrTM").val("");
+            $("#Technology").val("");
+            $("#ResourceName").val("");
+            $("#ProjectName").val("");
+            $("#PartnerName").val("");
+            $("#ClientName").val("");
+            $("#ReportingTime").val("");
+            $("#WorkLocation").val("");
+            $("#BussinessUnit").val("");
+            $("#WorkLocation").val("");
+            $("#Designation").val("");
+            $("#HardwareRequirement").val("");
+            $("#SoftwareRequirement").val("");
+            $("#WorkLocation").val("");
+
+        }
+
+
+        
+
+    </script>
+}
+<style type="text/css">
+    .buttonClass{ 
+font-size: 15pt!important;
+color: white;
+font-family: Arial;
+background-color: #7b91dd!important;
+width: 100px!important;
+height: 30px;
+border-right: #2f4bac 1px solid;
+border-top: #2f4bac 1px solid;
+}
+    
+
+     .tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px;
+   
+    display:inline-block;
+   }
+
+    .span {
+        color: red;
+        font-size:12px;
+    }
+
+    #register-form .error {
+        padding: 5px;
+        margin: 5px 0;
+        border: 1px solid #f00;
+    }
+    .errmsg {
+        text-align:center;
+        color:orangered;
+    }
+    .SucMsg {
+        text-align:center;
+        color:white;
+    }
+    .checkboxes {
+        width: 200px;
+        display: inline-table;
+    }
+
+    input:required {
+	border: 1px solid red;
+}
+    
+
+    #body {
+        /*background: -webkit-linear-gradient(bottom,#FFFFFF,#565759);*/
+        /*background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#FFFFFF), to(#565759));*/
+    }
+</style>

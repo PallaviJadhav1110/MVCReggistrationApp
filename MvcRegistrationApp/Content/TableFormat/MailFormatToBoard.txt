@@ -1,0 +1,109 @@
+<html>
+<body style="font-family:Calibri;font-size:14px">
+Hi Team,
+<br/>
+<br/>
+
+Following are the details of New Joinee - (Candidate Name).
+<br/>
+
+<table border="1" style="font-family:Calibri;font-size:14px">
+<tr Bgcolor="#CCCCFF">
+<td colspan="2" >
+<center> Fulcrum New Joiner Details</center>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor="#ffff99">
+<td>
+Mode of Hiring</td>
+<td>Contract Basis</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Name of the employee</td><td>[RN]</td>
+</tr>
+<tr>
+<td>Date of Joining</td><td>[DOJ]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Joining Location</td><td>[WL]</td>
+</tr>
+<tr>
+<td>Reporting Manager</td><td>[RM]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td> Business Unit </td><td>[BU]</td>
+</tr>
+<tr>
+<td> Designation </td><td>[Designation]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Skill</td><td>[Skill]</td>
+</tr>
+<tr>
+<td>Reporting Time</td><td>[RT]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Recruiter Name</td><td>[RecruiterName]</td>
+</tr>
+<tr>
+<td>Guest House Accommodation</td><td>[GHA]</td>
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Remarks (Start Date & No. of Days Committed)
+ </td><td>[Remarks]</td>
+
+</tr>
+<tr>
+<td>Hardware Requirements shared by RM/DM
+
+ </td><td>[HW]</td>
+
+</tr>
+<tr Bgcolor="#CCCCFF">
+<td>Software Requirements shared by RM/DM
+
+ </td><td>[SW]</td>
+
+</tr>
+
+
+
+</table>
+<br/>
+<br/>
+Thanks & Regards,
+<br/>
+VMG Team
+<br/>
+Fulcrum Worldwide Software (I) Pvt. Ltd.
+<br/>
+M (O) +91 09320434216 / 09320424218 | 
+<br/>
+405 VIP Plaza | Off Andheri Link Road | Andheri West | Mumbai - 400 053 | Maharashtra, India |  www.fulcrumww.com 
+<br/>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

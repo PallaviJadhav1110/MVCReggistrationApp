@@ -1,0 +1,21 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">SOWNo</th><th scope="col">SignedStatus</th><th scope="col">JoiningStatus</th><th scope="col">SOWDate</th><th scope="col">PartnerName</th><th scope="col">ClientName</th><th scope="col">ProjectName</th><th scope="col">ResourceName</th><th scope="col">Technology</th><th scope="col">FixedBidOrTM</th><th scope="col">ReportingManager</th><th scope="col">AssignmentStartDate</th><th scope="col">TentativeEndDate</th><th scope="col">EstimatedRateValue</th><th scope="col">Duration</th><th scope="col">ApproxRateperDay</th><th scope="col">ApproxPartnerCost</th><th scope="col">EstimateRate</th>
+		</tr><tr>
+			<td>&nbsp;</td><td>Signed</td><td>Joined</td><td>04/01/2014 00:00:00</td><td>james</td><td>godrej</td><td>UiRewamp</td><td>XYZ</td><td>mvc</td><td>Fixed</td><td>manoj acharya</td><td>19/09/2013 00:00:00</td><td>07/04/2014 00:00:00</td><td>2000</td><td>331</td><td>95.2380952380952</td><td>31523.8095238095</td><td>Per Day</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>Signed</td><td>BackOut</td><td>04/01/2014 00:00:00</td><td>Raj</td><td>godrej</td><td>bharati</td><td>A</td><td>mvc</td><td>Fixed</td><td>Manoj Karde</td><td>01/04/2014 00:00:00</td><td>02/04/2014 00:00:00</td><td>9</td><td>7</td><td>72</td><td>504</td><td>Per Man Hr</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>Signed</td><td>Joined</td><td>04/01/2014 00:00:00</td><td>xyz</td><td>godrej</td><td>axa</td><td>XYZ</td><td>mvc</td><td>Fixed</td><td>manoj acharya</td><td>19/09/2013 00:00:00</td><td>08/04/2014 00:00:00</td><td>2000</td><td>331</td><td>95.2380952380952</td><td>31523.8095238095</td><td>&nbsp;</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>Signed</td><td>BackOut</td><td>04/01/2014 00:00:00</td><td>x</td><td>godrej</td><td>UiRewamp</td><td>B</td><td>mvc</td><td>Fixed</td><td>Manoj Karde</td><td>10/04/2014 00:00:00</td><td>09/04/2014 00:00:00</td><td>9</td><td>7</td><td>72</td><td>504</td><td>Per Man Hr</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>Signed</td><td>BackOut</td><td>04/01/2014 00:00:00</td><td>y</td><td>godrej</td><td>dsrp</td><td>XYZ</td><td>mvc</td><td>Fixed</td><td>Manoj Karde</td><td>01/04/2014 00:00:00</td><td>10/04/2014 00:00:00</td><td>9</td><td>7</td><td>72</td><td>504</td><td>Per Man Hr</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>Signed</td><td>BackOut</td><td>04/01/2014 00:00:00</td><td>z</td><td>godrej</td><td>dsr</td><td>C</td><td>mvc</td><td>Fixed</td><td>Manoj Karde</td><td>01/04/2014 00:00:00</td><td>11/04/2014 00:00:00</td><td>9</td><td>7</td><td>72</td><td>504</td><td>Per Man Hr</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>Signed</td><td>BackOut</td><td>04/01/2014 00:00:00</td><td>a</td><td>godrej</td><td>UiRewamp</td><td>XYZ</td><td>mvc</td><td>Fixed</td><td>Manoj Karde</td><td>01/04/2014 00:00:00</td><td>12/04/2014 00:00:00</td><td>9</td><td>7</td><td>72</td><td>504</td><td>Per Man Hr</td>
+		</tr>
+	</table>
+</div>

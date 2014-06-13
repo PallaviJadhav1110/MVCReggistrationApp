@@ -1,0 +1,158 @@
+﻿@model DataLayer.EngagementSummary
+
+<link href="~/Scripts/Custom/EngagementsSummary.css" rel="stylesheet" />
+
+<h4>Overall Summary of Engagements</h4>
+<div id="MonthlyRecord"></div>
+<div>
+    @*@if(@Model.Count!=0)
+{
+    *@<div id="person_head_wrap" style="overflow: hidden; width:620px;">
+        <table id="person" class="tbl1">
+            <thead>
+                <tr>
+                    <th>Overall Summary of Engagements</th>
+                    <th>Engagement Started</th>
+                    <th>Extensions</th>
+                    <th>Completed / Terminated</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="person_body_wrap" style="overflow: auto; width:620px; height: 110px;">
+        <table id="EngagementSummary" class="tbl1">
+            <tbody>
+                <tr>
+                    <td>January-@DateTime.Now.Year</td>
+                    <td><a href="#", id ='EngagementsStarted_January_@DateTime.Now.Year' , style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.January)</a></td>
+                    <td><a href="#" id = "EngagementsExtended_January_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.January)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_January_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.January)</a></td>
+                </tr>
+
+                <tr>
+                    <td>February-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_February_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.February)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_February_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.February)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_February_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.February)</a></td>
+                </tr>
+                <tr>
+                    <td>March-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_March_@DateTime.Now.Year'  style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.March)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_March_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.March)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_March_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.March)</a></td>
+                </tr>
+                <tr>
+                    <td>April-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_April_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.April)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_April_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.April)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_April_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.April)</a></td>
+                </tr>
+                <tr>
+                    <td>May-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_May_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.May)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_May_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.May)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_May_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.May)</a></td>
+                </tr>
+                <tr>
+                    <td>June-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_June_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.June)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_June_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.June)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_June_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.June)</a></td>
+                </tr>
+                <tr>
+                    <td>July-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_July_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.July)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_July_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.July)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_July_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.July)</a></td>
+                </tr>
+                <tr>
+                    <td>August-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_August_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.August)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_August_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.August)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_August_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.August)</a></td>
+                </tr>
+                <tr>
+                    <td>September-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_September_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.September)</a></td>
+                    <td><a href="#" id = 'EngagementsExtended_Semptember_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.September)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_September_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.September)</a></td>
+                </tr>
+                <tr>
+                    <td>October-@DateTime.Now.Year</td>
+                    <td><a href="#" id = EngagementsStarted_October_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.October)</a></td>
+                    <td><a href="#" id = "EngagementsExtended_October_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.October)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_October_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.October)</a></td>
+                </tr>
+                <tr>
+                    <td>November-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_November_@DateTime.Now.Year' style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.November)</a></td>
+                    <td><a href="#" id = "EngagementsExtended_November_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.November)</a></td>
+                    <td><a href="#" id = "EngagementsCompleted_November_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.November)</a></td>
+                </tr>
+                <tr>
+                    <td>December-@DateTime.Now.Year</td>
+                    <td><a href="#" id = 'EngagementsStarted_December_@DateTime.Now.Year'  style="color:blue">@Html.DisplayFor(x => x.ExistingEngagements.December)</a></td>
+                    <td><a href="#" id = "EngagementsExtended_December_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.ExtentedEngagements.December)</a></td>
+                    <td><a href="#" id = "EngagementsComple_December_@DateTime.Now.Year" style="color:blue">@Html.DisplayFor(x => x.CompletedEngagements.December)</a></td>
+                </tr>
+
+
+                <!-- Additional rows removed for brevity. -->
+        </table>
+    </div>
+    @*}
+    else
+{
+    <div><h4>No Record</h4></div>
+}*@
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+    $('#EngagementSummary a').on("click", function () {
+
+        var id = $(this).attr('id');  //update2: should have been jQuery(this...
+        var url = "@Url.Action("GetMonthlyRecord", "DashBoard")";
+        $.ajax({
+            type: 'POST',
+            data: { id: id },
+            url: url,
+            success: function (response) {
+
+
+                $('#MonthlyRecord').dialog('open');
+                $('#MonthlyRecord').attr("title", id);
+                $('#MonthlyRecord').html(response);
+
+
+            },
+            failure: function (res) {
+                alert("failure");
+            }
+        });
+
+
+        $('#MonthlyRecord').dialog({
+            autoOpen: false,
+            width: 800,
+            height: 300,
+            resizable: false,
+            modal: true, //dialog options
+
+
+        });
+
+    });
+</script>

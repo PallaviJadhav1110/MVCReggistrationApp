@@ -1,0 +1,5 @@
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\bin\Release\DataLayer.dll
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\bin\Release\DataLayer.pdb
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\obj\Release\DataLayer.csprojResolveAssemblyReference.cache
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\obj\Release\DataLayer.dll
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\obj\Release\DataLayer.pdb

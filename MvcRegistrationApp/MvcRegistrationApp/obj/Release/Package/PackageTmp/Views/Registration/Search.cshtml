@@ -1,0 +1,46 @@
+﻿@model MvcRegistrationApp.Models.SearchModel
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+@using (Ajax.BeginForm("SearchIndex", "Registration", new AjaxOptions() { OnBegin = "OnClick", OnSuccess = "OnComplete", UpdateTargetId = "divList" }))
+{
+     @Html.ValidationSummary(true)
+	<div>
+      Email Id : &nbsp:&nbsp; @Html.TextBoxFor(x => x.ResourceName) &nbsp;&nbsp;&nbsp;&nbsp;<input id="btnSubmit" type="submit" value="Search"/>
+	</div>
+			
+			
+		
+		
+
+
+	<div id="divList">
+     @{Html.RenderPartial("EmployeeData",Model);}
+	</div>
+}
+
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $.ajax({
+    //        type: 'GET',           
+    //        url: "/Registration/EmployeeData",
+    //        success: function (response) {
+    //            //alert(response);
+    //            $('#divList').html(response);
+
+    //        }
+    //    });
+    //});
+	function OnClick() {
+		$("#btnSubmit").val("Searching......");
+	}
+
+	function OnComplete(parameters) {
+		$("#btnSubmit").val("Search");
+	}
+</script>

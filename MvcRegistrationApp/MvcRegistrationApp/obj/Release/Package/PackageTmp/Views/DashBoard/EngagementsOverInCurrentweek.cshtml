@@ -1,0 +1,72 @@
+﻿@model List<DataLayer.ResourceInfo>
+<link href="~/Scripts/Custom/EngagementsOverInCurrentweek.css" rel="stylesheet" />
+<h4>Engagements Getting Over in Current Week:- @Model.Count  </h4>
+<div>
+    @if (@Model.Count != 0)
+    {
+        <div id="person_head_wrap" style="overflow: hidden; width:100%;">
+            <table id="person" class="tbl1">
+                <thead>
+                    <tr>
+                        <th>Resource Name
+                        </th>
+                        <th>Technology
+                        </th>
+                        <th>Client Name</th>
+                        <th>Project Name</th>
+                        <th>Rate</th>
+                        <th>Assignment End date</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="person_body_wrap" style="overflow: auto; width: 100%; height: 110px;">
+            <table id="EngagementOverIncurrentWeek" class="tbl1">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><a href="#",id = '@item.id' style="color:blue">@item.ResourceName</a></td>
+                            <td>@item.Technology</td>
+                            <td>@item.ClientName</td>
+                            <td>@item.ProjectName</td>
+                            <td>@item.EstimatedRateValue</td>
+                            <td>@item.TentativeEndDate.ToShortDateString()</td>
+                        </tr>
+                    }
+
+                    <!-- Additional rows removed for brevity. -->
+            </table>
+        </div>
+    }
+    else
+    {
+        <div>
+            <h4>No Record</h4>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('#EngagementOverIncurrentWeek a').click(function () {
+
+        var id = $(this).attr('id');  //update2: should have been jQuery(this...
+        var url = "@Url.Action("GetRecordDetails", "DashBoard")";
+        $.ajax({
+            type: 'POST',
+            data: { id: id },
+            url: url,
+            success: function (response) {
+
+                $('#RecordInDetail').html(response);
+
+
+            },
+            failure: function (res) {
+                alert("failure");
+            }
+        });
+    });
+</script>
+
+

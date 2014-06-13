@@ -1,0 +1,130 @@
+
+
+    .tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px;
+   }
+   
+
+    .chk {
+        margin-left:25px;
+    }
+    table th{
+       
+        text-align:center;
+       background-color: #4e9fcc;
+    }
+    table th, td {
+        padding:0 2px 0 5px;
+        font-family: Arial;
+         font-size: 11px;
+         height:25px!important;
+        
+         border:1px solid #4e9fcc;
+    }
+    tr:nth-child(even) {
+    background-color:#fefefe;
+   }
+    tr:nth-child(odd) {
+    background-color:#deecf5;
+}
+    .SR {
+    display:none;
+    }
+    .tech {
+        display:none;
+    }
+    .FT {
+    display:none;
+    }
+    .RM {
+        display:none;
+    }
+    .ASD {
+    display:none;
+    }
+    .TED {
+        display:none;
+    }
+    .RM {
+    display:none;
+    }
+    .RT {
+        display:none;
+    }
+    .HR {
+    display:none;
+    }
+    .WL {
+        display:none;
+    }
+    .SS {
+    display:none;
+    }
+    .JS {
+    display:none;
+    }
+    .SOWDate {
+    display:none;
+    }
+    .D {
+        display:none;
+    }
+    .BU {
+    display:none;
+    }
+    .RT {
+        display:none;
+    }
+    .RN {
+        display:none;
+    }
+    .GAR {
+        display:none;
+    }
+    .empdata {
+    color: black !important;
+    }
+    .Mtech{
+        display:none;
+    }
+
+    /*table.dataTable thead .sorting {
+ width:100px!important;
+}
+table.dataTable thead .sorting_asc {
+   width:100px!important;
+}
+table.dataTable thead .sorting_desc {
+  width:100px!important;
+}
+table.dataTable thead .sorting_asc_disabled {
+   width:100px!important;
+}
+table.dataTable thead .sorting_desc_disabled {
+   width:100px!important;
+}*/
+
+   input,button {
+    display: table-cell;
+    /*background: red url(gradient.png) repeat-x scroll top left;*/
+    
+    border-radius: 25px; /* Standard */
+    -o-border-radius: 25px; /* Opera 10.x */
+    -moz-border-radius: 25px; /* Mozilla/Firefox */
+    -icab-border-radius: 25px; /* iCab */
+    -khtml-border-radius: 25px; /* KHTML/Konqueror */
+    -webkit-border-radius: 25px; /* Webkit/Safari/Chrome/etcetera */
+}
+
+
+
+.W100 {
+width:100%;
+}

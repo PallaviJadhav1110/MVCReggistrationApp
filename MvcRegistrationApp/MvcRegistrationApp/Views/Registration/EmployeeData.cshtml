@@ -1,0 +1,253 @@
+﻿@model DataLayer.SearchModel
+
+
+<link href="~/Scripts/Custom/EmployeeData.css" rel="stylesheet" />
+
+@*@if (Model.EmployeeList.Count != 0)
+{   
+   
+    
+    <table id="example" class="display" style="border-spacing:0px; width:100%">
+                    <thead>
+        <tr style="font-size: smaller">
+            <th>SOW NO</th>
+            <th class="SS">Signed Status</th>
+            <th class="JS">Joining Status</th>
+            <th class="SOWDate">SOW Date</th>
+            <th>Partner Name</th>
+            <th>Client Name</th>
+            <th>ProjectName</th>
+            <th>Resource Name</th>
+            <th class="tech">Technology</th>
+            <th class="Mtech">Main Technology</th>
+            <th class="FT">FixedBidOrTM</th>
+            <th class="RM">Reporting Manager</th>
+            <th class="ASD">Assignment Start Date</th>
+            <th class="TED">Tentative End Date</th>
+            <th>Estimated Rate</th>
+            <th class="WL">Work Location</th>
+            <th class="BU">Bussiness Unit</th>
+            <th class="D">Designation</th>
+            <th class="RT">Reporting Time</th>
+            <th class="RN">Recruiter Name</th>
+            <th class="HR">Hardware Requiremments</th>
+            <th class="SR">Software Requirements</th>
+            <th class="GAR">GA Remark</th>
+            <th>Document </th>
+            <th>Create Extension</th>
+            <th>Update</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        @foreach (var item in Model.EmployeeList)
+        {
+              
+            <tr>
+
+                <td>@item.SOWNo</td>
+               
+                <td class="SS">@item.SignedStatus</td>
+                <td class="JS">@item.JoiningStatus</td>
+                <td class="SOWDate">@item.SOWDate.ToShortDateString()</td>
+                <td>@item.PartnerName</td>
+                <td>@item.ClientName</td>
+                <td>@item.ProjectName</td>
+                <td>@item.ResourceName</td>
+                <td class="tech">@item.Technology</td>
+                 <td class="Mtech">@item.TechStream</td>
+                <td class="FT">@item.FixedBidOrTM</td>
+                <td class="RM">@item.ReportingManager</td>
+                <td class="ASD">@item.AssignmentStartDate.ToShortDateString()</td>
+                <td class="TED">@item.TentativeEndDate.ToShortDateString()</td>
+                <td>@item.EstimatedRateValue</td>
+                <td class="WL">@item.WorkLocation</td>
+                <td class="BU">@item.BussinessUnit</td>
+                <td class="D">@item.Designation </td>
+                <td class="RT">@item.ReportingTime</td>
+                <td class="RN">@item.RecruiterName</td>
+                <td class="HR">@item.HardwareRequirement</td>
+                <td class ="SR">@item.SoftwareRequirement</td>
+                @if (@item.Remarks != null || @item.Remarks != "")
+                {
+                    <td class="GAR">@item.Remarks</td>
+                }
+
+                <td>
+                   
+
+                    @foreach (var a in @item.AttachFile1.Split(','))
+                     {
+                         if (!String.IsNullOrEmpty(a))
+                         {
+                            
+                             <a  href="~/Content/Documents/@a.Trim()" ><input type="button"  value="File"  title="@a"  class="masterTooltip"/></a>                         }
+                     }
+                </td>
+
+                <td><a href="@Url.Action("UserDetails", "Registration", new { @id = item.id,@update="false"})">Create Extension</a></td>
+                <td><a href="@Url.Action("UserDetails", "Registration", new {@id=item.id, @update="true"})">Update</a></td>
+                
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+   
+    <table>
+        <tr>
+            <td>No Records Found</td>
+        </tr>
+    </table> 
+       
+    
+}*@
+
+<div style="max-height:500px;width:100%;overflow-y:scroll;overflow-x:scroll">
+@if (Model.EmployeeList.Count != 0)
+{   
+   
+    
+    <table class="empdata W100">
+        <tr style="font-size: smaller">
+            <th>SOW NO</th>
+            <th class="SS">Signed Status</th>
+            <th class="JS">Joining Status</th>
+            <th class="SOWDate">SOW Date</th>
+            <th>Partner Name</th>
+            <th>Client Name</th>
+            <th>ProjectName</th>
+            <th>Resource Name</th>
+            <th class="tech">Technology</th>
+            <th class="Mtech">Main Technology</th>
+            <th class="FT">FixedBidOrTM</th>
+            <th class="RM">Reporting Manager</th>
+            <th class="ASD">Assignment Start Date</th>
+            <th class="TED">Tentative End Date</th>
+            <th>Estimated Rate</th>
+            <th class="WL">Work Location</th>
+            <th class="BU">Bussiness Unit</th>
+            <th class="D">Designation</th>
+            <th class="RT">Reporting Time</th>
+            <th class="RN">Recruiter Name</th>
+            <th class="HR">Hardware Requiremments</th>
+            <th class="SR">Software Requirements</th>
+            <th class="GAR">GA Remark</th>
+            <th>Document </th>
+            <th>Create Extension</th>
+            <th>Update</th>
+        </tr>
+
+
+
+
+        @foreach (var item in Model.EmployeeList)
+        {
+              
+            <tr>
+
+                <td>@item.SOWNo</td>
+               
+                <td class="SS">@item.SignedStatus</td>
+                <td class="JS">@item.JoiningStatus</td>
+                <td class="SOWDate">@item.SOWDate.ToShortDateString()</td>
+                <td>@item.PartnerName</td>
+                <td>@item.ClientName</td>
+                <td>@item.ProjectName</td>
+                <td>@item.ResourceName</td>
+                <td class="tech">@item.Technology</td>
+                 <td class="Mtech">@item.TechStream</td>
+                <td class="FT">@item.FixedBidOrTM</td>
+                <td class="RM">@item.ReportingManager</td>
+                <td class="ASD">@item.AssignmentStartDate.ToShortDateString()</td>
+                <td class="TED">@item.TentativeEndDate.ToShortDateString()</td>
+                <td>@item.EstimatedRateValue</td>
+                <td class="WL">@item.WorkLocation</td>
+                <td class="BU">@item.BussinessUnit</td>
+                <td class="D">@item.Designation </td>
+                <td class="RT">@item.ReportingTime</td>
+                <td class="RN">@item.RecruiterName</td>
+                <td class="HR">@item.HardwareRequirement</td>
+                <td class ="SR">@item.SoftwareRequirement</td>
+                @if (@item.Remarks != null || @item.Remarks != "")
+                {
+                    <td class="GAR">@item.Remarks</td>
+                }
+
+                <td>
+                   
+
+                    @foreach (var a in @item.AttachFile1.Split(','))
+                     {
+                         if (!String.IsNullOrEmpty(a))
+                         {
+                            
+                             <a  href="~/Content/Documents/@a.Trim()" ><input type="button"  value="File"  title="@a"  class="masterTooltip"/></a>                         }
+                     }
+                </td>
+
+                <td><a href="@Url.Action("UserDetails", "Registration", new { @id = item.id,@update="false"})">Create Extension</a></td>
+                <td><a href="@Url.Action("UserDetails", "Registration", new {@id=item.id, @update="true"})">Update</a></td>
+                
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+   
+    <table>
+        <tr>
+            <td>No Records Found</td>
+        </tr>
+    </table> 
+       
+    
+}</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+       
+ 
+        //$('#example').dataTable({
+        //    "scrollY": 200,
+        //    "scrollX": true
+        //});
+        
+
+        $('.masterTooltip').hover(function () {
+            // Hover over code
+            var title = $(this).attr('title');
+            $(this).data('tipText', title).removeAttr('title');
+            $('<p class="tooltip"></p>')
+            .text(title)
+            .appendTo('body')
+            .fadeIn('slow');
+        }, function () {
+            // Hover out code
+            $(this).attr('title', $(this).data('tipText'));
+            $('.tooltip').remove();
+        }).mousemove(function (e) {
+            var mousex = e.pageX + 20; //Get X coordinates
+            var mousey = e.pageY + 10; //Get Y coordinates
+            $('.tooltip')
+            .css({ top: mousey, left: mousex })
+        });
+
+    });
+</script>
+
+
+
+

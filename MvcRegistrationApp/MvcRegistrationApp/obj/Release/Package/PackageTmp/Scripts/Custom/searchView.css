@@ -1,0 +1,42 @@
+    /*th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }*/
+
+    .message {
+        color: orangered;
+    }
+
+    .checkboxes {
+        width: 200px;
+        display: inline-table;
+    }
+
+    #menu li a#resorcedata {
+        display: none;
+    }
+
+    #btnSubmit {
+        background-color: #deecf5;
+    }
+
+    #Export {
+        background-color: #deecf5;
+    }
+
+    input, textarea {
+        font-size: 12px;
+    }
+    .errmsg {
+        color:red;
+    }
+
+    #body {
+        /*background: -webkit-linear-gradient(bottom,#FFFFFF,#565759);*/
+        /*background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#FFFFFF), to(#565759));*/
+    }
+#DivTblSearch {
+    margin: 12px 0 3px;
+    text-align: center;
+}

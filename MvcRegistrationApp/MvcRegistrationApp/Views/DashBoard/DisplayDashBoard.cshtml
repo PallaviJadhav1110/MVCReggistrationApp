@@ -1,0 +1,306 @@
+﻿@model DataLayer.EngagementSummary
+@{
+    ViewBag.Title = "DisplayDashBoard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table>
+    <tr>
+        <td class="Tdclass">@{Html.RenderPartial("EngagementsSummary", @Model);}
+            <br />
+        </td>
+
+        <td class="Tdclass">@{Html.RenderPartial("EngagementsOverInCurrentweek", @Model.ListEngagementsOverInCurrentWeek);}
+            <br />
+        </td>
+    </tr>
+    <tr>
+
+        <td class="Tdclass">
+
+            @{Html.RenderPartial("ExistingEngagementsPartialView", @Model.ExistingEngagementList);}</td>
+
+        @* <td class="Tdclass" >*@@*<table style="width:auto"><tr><td id="pie1" style="width:200px"></td><td id="pie2" style="width:200px"></td></tr></table>*@@*<div id="pie1" style="height:300px; width:500px;float:left"></div>*@@*<div id="pie2" style="width:200px; float:right;display: inline-block"></div>*@@*</td>*@
+        <td>
+            <div id="DialogForm" style="display: none">
+                <div id="piechart3" style="height: 600px!important; width: 700px!important"></div>
+            </div>
+            <div id="DialogForm1" style="display: none">
+                <div id="piechart4" style="height: 600px!important; width: 700px!important"></div>
+            </div>
+            <div id="piechart1" style="float: left; height: 230px!important; width: 300px!important"></div>
+            <div id="piechart2" style="float: right; height: 230px!important; width: 350px!important"></div>@*<div id="pie2" style="width:250px; float:right;display: inline-block"></div>*@</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="height: 120px!important; background-color: white;">
+            <div id="RecordInDetail"></div>
+        </td>
+    </tr>
+
+
+
+</table>
+
+@*<div id="chart1" style="width:200px"></div>
+    <div id="chart2" style="width:200px"></div>
+    *@
+<style>
+    #menu li a#Dashboard {
+        display: none;
+    }
+
+    .Tdclass {
+        background-color: white;
+        width: 650px!important;
+        height: 100px!important;
+    }
+
+
+
+    /*.itemdetailws
+{
+    /*border: thin dotted #C0C0C0;*/
+    /*overflow-y: scroll;    
+    height: 40px;
+}*/
+    #piechart1 table.jqplot-table-legend {
+        width: 120px!important;
+        font-size: 5px!important;
+    }
+
+    #piechart2 table.jqplot-table-legend {
+        width: 150px!important;
+        font-size: 5px!important;
+    }
+
+    #piechart3 table.jqplot-table-legend {
+        width: 100px!important;
+        font-size: 5px!important;
+    }
+</style>
+
+<link href="~/Scripts/datatables/jquery.dataTables.css" rel="stylesheet" />
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    @*   <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>*@
+    @*<script src="~/Scripts/datatables/jquery-1.10.2.min.js"></script>*@
+
+    <script src="~/Scripts/JqChart/jquery.jqplot.min.js"></script>
+    <script src="~/Scripts/JqChart/plugins/jqplot.pieRenderer.min.js"></script>
+    <script src="~/Scripts/JqChart/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script src="~/Scripts/JqChart/plugins/jqplot.pointLabels.min.js"></script>
+    <script src="~/Scripts/JqChart/plugins/jqplot.donutRenderer.min.js"></script>
+    <link href="~/Scripts/JqChart/jquery.jqplot.min.css" rel="stylesheet" />
+    <link href="~/Scripts/JqChart/plugins/jqplot.css" rel="stylesheet" />
+
+
+    <script src="~/Scripts/datatables/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        var TechnologyListModel = function (text, value) {
+            this.Text = text;
+            this.Value = value;
+        }
+        var VendorListModel = function (text, value) {
+            this.Text = text;
+            this.Value = value;
+        }
+        var TechnologyList = [];
+        var TechnologyList1 = [];
+        var DisplayVendorList = [];
+        var DisplayVendorList1 = [];
+
+        $(document).ready(function () {
+            
+
+            TechnologyPieChart();
+            VendorPieChart();
+            debugger;
+            var legendTable = $($('.jqplot-table-legend')[0]);    
+            legendTable.css('display','block');
+            legendTable.css('z-index',130);
+            legendTable.css('height','170px');
+            legendTable.css('overflow-y','scroll');
+            $(".jqplot-event-canvas").live("click",function(){
+                var chart=$(this).parent().attr("Id");
+          
+                //alert(chart);
+                if(chart=="piechart1")
+                {
+                    debugger;
+                    $('#DialogForm').dialog('open');
+                    TechnologyPieChartInBrief();
+                    //return false; // prevents the default behaviour
+                }
+                else if(chart=="piechart2")
+                {
+                    debugger;
+                    $('#DialogForm1').dialog('open');
+                    //TechnologyPieChartInBrief();
+                    VendorPieChartInDialog();
+                    //return false; // prevents the default behaviour
+                }
+
+            });
+       
+
+
+            $('#DialogForm').dialog({
+                autoOpen: false,
+                width: 800,
+                height: 700,
+                resizable: false,
+                modal: true, //dialog options
+
+
+            });
+            $('#DialogForm1').dialog({
+                autoOpen: false,
+                width: 800,
+                height: 700,
+                resizable: false,
+                modal: true, //dialog options
+
+
+            });
+            
+
+
+        });
+
+        function TechnologyPieChart() {
+            var mmodel = @Html.Raw(Json.Encode(Model));   
+            //alert(mmodel);
+            var tList = mmodel.DisplayTechnologyList;
+            TechnologyList = [];
+        
+            for (var i = 0; i <tList.length; i++) {
+                //if(i<6)
+                //{
+                TechnologyList.push([tList[i].Text, parseInt(tList[i].Value)]);
+                //    TechnologyList1.push([tList[i].Text, parseInt(tList[i].Value)]);
+                //}
+                //else{
+            
+                TechnologyList1.push([tList[i].Text, parseInt(tList[i].Value)]);
+            
+                //}
+            }
+            var plot1 = jQuery.jqplot('piechart1', [TechnologyList],
+              {
+                  seriesDefaults: {
+                      // Make this a pie chart.
+                      renderer: jQuery.jqplot.PieRenderer,
+                      rendererOptions: {
+                         
+                          // Put data labels on the pie slices.
+                          // By default, labels show the percentage of the slice.
+                          showDataLabels: true
+                      }
+                  },
+                  title: {
+                      text: 'Technology Pie Chart'
+                  },
+                  
+                  legend: { show: true, location: 'nw' }
+              }
+            );
+        }
+
+        function VendorPieChart()
+        {
+            var mmodel = @Html.Raw(Json.Encode(Model));
+            var vList = mmodel.VendorLIst;
+            DisplayVendorList = [];
+            for (var i = 0; i <vList.length; i++) {
+                DisplayVendorList.push([vList[i].Text, parseInt(vList[i].Value)]);
+            }
+
+            $.jqplot.config.enablePlugins = true;  
+            var plot2 = jQuery.jqplot ('piechart2', [ DisplayVendorList], 
+    { 
+        seriesDefaults: {
+            // Make this a pie chart.
+            renderer: jQuery.jqplot.PieRenderer, 
+            rendererOptions: {
+                // Put data labels on the pie slices.
+                // By default, labels show the percentage of the slice.
+                showDataLabels: true
+            }
+        }, title: {
+            text: 'Top 5 Vendor Pie Chart'
+        },
+        legend: { show:true, location: 'nw' }
+    }
+    );
+
+        }
+
+        function VendorPieChartInDialog()
+        {
+            debugger;
+            var mmodel = @Html.Raw(Json.Encode(Model));
+            var vList1 = mmodel.VendorLIst;
+            DisplayVendorList1 = [];
+            for (var i = 0; i <vList1.length; i++) {
+                DisplayVendorList1.push([vList1[i].Text, parseInt(vList1[i].Value)]);
+            }
+
+            $.jqplot.config.enablePlugins = true;  
+            var plot4 = jQuery.jqplot ('piechart4', [ DisplayVendorList1], 
+    { 
+        seriesDefaults: {
+            // Make this a pie chart.
+            renderer: jQuery.jqplot.PieRenderer, 
+            rendererOptions: {
+                // Put data labels on the pie slices.
+                // By default, labels show the percentage of the slice.
+                showDataLabels: true
+            }
+        },
+        title: {
+            text: 'Vendor Pie Chart'
+        },
+        legend: { show:true, location: 'nw' }
+    }
+    );
+
+        }
+
+        function TechnologyPieChartInBrief()
+        {
+      
+      
+            debugger;
+       
+
+            $.jqplot.config.enablePlugins = true;    
+
+            var plot3 = jQuery.jqplot ('piechart3', [TechnologyList1], 
+       { 
+           seriesDefaults: {
+               // Make this a pie chart.
+               renderer: jQuery.jqplot.PieRenderer, 
+               rendererOptions: {
+                   // Put data labels on the pie slices.
+                   // By default, labels show the percentage of the slice.
+                   showDataLabels: true
+               }
+           }, title: {
+               text: 'Technology Pie Chart'
+           },
+           legend: { show:true, location: 'nw' }
+       }
+     );
+
+        }
+
+    </script>
+
+
+}

@@ -1,0 +1,10 @@
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\DataLayer\bin\Debug\DataLayer.dll
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\DataLayer\bin\Debug\DataLayer.pdb
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\DataLayer\obj\Debug\DataLayer.dll
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\DataLayer\obj\Debug\DataLayer.pdb
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\bin\Debug\DataLayer.dll
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\bin\Debug\DataLayer.pdb
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\obj\Debug\DataLayer.dll
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\obj\Debug\DataLayer.pdb
+P:\Users\fwin001002\Desktop\running app\MvcRegistrationApp\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache

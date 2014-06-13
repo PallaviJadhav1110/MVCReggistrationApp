@@ -1,0 +1,5 @@
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\SOWTrackerService\bin\SOWTrackerService.dll
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\SOWTrackerService\bin\SOWTrackerService.pdb
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\SOWTrackerService\obj\Debug\SOWTrackerService.dll
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\SOWTrackerService\obj\Debug\SOWTrackerService.pdb
+P:\Users\fwin001002\Documents\Visual Studio 2012\MvcRegistrationApp\SOWTrackerService\obj\Debug\SOWTrackerService.csprojResolveAssemblyReference.cache
